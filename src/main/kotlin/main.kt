@@ -1,13 +1,10 @@
 fun main() {
     println("Bem vindo ao Bytebank")
-    val contaAlex = Conta()
-    contaAlex.titular = "Alex"
-    contaAlex.numero = 1000
+
+    val contaAlex = Conta("Alex", 1000)
     contaAlex.deposita(200.0)
 
-    val contaFran = Conta()
-    contaFran.titular = "Fran"
-    contaFran.numero = 1001
+    val contaFran = Conta("Fran", 1001)
     contaFran.deposita(300.0)
 
     println(contaFran.titular)
@@ -55,12 +52,12 @@ fun main() {
 
 }
 
-class Conta {
-    var titular = ""
-    var numero = 0
+class Conta( //Construtor primário
+    var titular: String,
+    var numero: Int
+    ) {
     var saldo = 0.0
         private set
-
 
     fun deposita(valor: Double) {
         if(valor > 0) {
@@ -87,26 +84,25 @@ class Conta {
 }
 
 //Tetando cópias e referências
-//fun testaCopiasEReferencias(){
-//    val numeroX = 10
-//    var numeroY = numeroX
-//    numeroY++
-//
-//    println("numeroX $numeroX")
-//    println("numeroY $numeroY")
-//
-//    val contaJoao = Conta()
-//    contaJoao.titular = "João"
-//    var contaMaria = Conta()
-//    contaMaria.titular = "Maria"
-//    contaJoao.titular = "João"
-//
-//    println("titular conta joao: ${contaJoao.titular}")
-//    println("titular conta maria: ${contaMaria.titular}")
-//
-//    println(contaJoao)
-//    println(contaMaria)
-//}
+fun testaCopiasEReferencias(){
+    val numeroX = 10
+    var numeroY = numeroX
+    numeroY++
+
+    println("numeroX $numeroX")
+    println("numeroY $numeroY")
+
+    val contaJoao = Conta("João", 1002)
+    var contaMaria = Conta("Maria", 1003)
+    contaMaria.titular = "Maria"
+    contaJoao.titular = "João"
+
+    println("titular conta joao: ${contaJoao.titular}")
+    println("titular conta maria: ${contaMaria.titular}")
+
+    println(contaJoao)
+    println(contaMaria)
+}
 
 
 //Laços
